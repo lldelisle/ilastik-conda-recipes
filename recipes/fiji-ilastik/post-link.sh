@@ -6,10 +6,13 @@ if [ ! -e "$ilastik_bin" ]; then
   # Version 1.4.0b27
   ilastik_bin=${CONDA_PREFIX}/bin/ilastik-app
   if [ ! -e "$ilastik_bin" ]; then
-    ilastik_bin=""
+    # ilastik-launch
+    ilastik_bin=${CONDA_PREFIX}/run_ilastik.sh
+    if [ ! -e "$ilastik_bin" ]; then
+      ilastik_bin=""
+    fi
   fi
 fi
-
 if [ -n "$ilastik_bin" ]; then
   echo "
   ------------------------------------------------------------------------------
@@ -19,7 +22,7 @@ if [ -n "$ilastik_bin" ]; then
 
   Alternatively, you can set it in Fiji with:
     Plugins>ilastik>Configure ilastik executable location
-    ${CONDA_PREFIX}/bin/ilastik
+    $ilastik_bin
 
   ------------------------------------------------------------------------------ 
 " >> $PREFIX/.messages.txt

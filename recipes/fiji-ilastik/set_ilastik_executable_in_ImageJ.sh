@@ -7,7 +7,11 @@ if [ ! -e "$ilastik_bin" ]; then
   # Version 1.4.0b27
   ilastik_bin=${CONDA_PREFIX}/bin/ilastik-app
   if [ ! -e "$ilastik_bin" ]; then
-    ilastik_bin=""
+    # ilastik-launch
+    ilastik_bin=${CONDA_PREFIX}/run_ilastik.sh
+    if [ ! -e "$ilastik_bin" ]; then
+      ilastik_bin=""
+    fi
   fi
 fi
 
